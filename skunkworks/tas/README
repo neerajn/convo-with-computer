@@ -1,0 +1,39 @@
+========================================================================================
+Problem statement:
+Write a code to implement a concurrent server
+Problem Description: You need to design and develop a client-
+server program.
+Server's role: is to offer the following services
+1. testprime
+2. nextprime
+3. nextnprimes
+4. getdate
+5. filetestoperation
+Client's role: is to consume the services offered by the server
+Note: Solve this problem using processes (no threading)
+Expectations:
+1. The program should work
+2. It should be efficient
+3. It should be scalable
+Usage: we run the server program first, so that the server is ready
+to offer the intended services. And then when we run the client
+program on a different computer it should display the list of
+services available on the server.... like below (on the client box)
+List of Services
+1. testprime
+2. nextprime
+3. nextnprimes
+4. getdate
+5. filetestoperation
+6. exit
+Enter your choice:
+========================================================================================
+Assumptions:
+
+========================================================================================
+How to run:
+1) Run make
+2) client and server binaries are created in the same folder as the makefile for now. 
+
+========================================================================================
+
