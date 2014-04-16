@@ -1,3 +1,7 @@
+/**
+ * Command to handle file test operations
+ *
+ */
 #ifndef FILETESTOPERATIONCOMMAND_H_
 #define FILETESTOPERATIONCOMMAND_H_
 

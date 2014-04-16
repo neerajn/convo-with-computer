@@ -9,6 +9,7 @@
 #define COMMAND_H_
 
 #include "commanddata.h"
+#include "helper.h"
 
 class Command
 {

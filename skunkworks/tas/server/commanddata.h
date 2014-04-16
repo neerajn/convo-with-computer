@@ -1,8 +1,9 @@
-/*
- * CommandData.h
+/**
+ * commanddata.cpp
+ *
+ * Serves as a common holder, reference point for input and output
  *
  */
-
 #ifndef COMMANDDATA_H_
 #define COMMANDDATA_H_
 
@@ -14,61 +15,50 @@ class CommandData
         CommandData ();
         ~CommandData ();
 
-        RequestFileTestOperation& getFileTestOperationMessage ();
+        RequestFileTestOperation* getFileTestOperationMessage ();
         void setFileTestOperationMessage (
-                 RequestFileTestOperation& fileTestOperationMessage);
-
-        RequestNextNPrimes& getNextNPrimeMessage ();
-        void setNextNPrimeMessage (RequestNextNPrimes& nextNPrimeMessage);
-
-        RequestNextPrime& getNextPrimeMessage ();
-        void setNextPrimeMessage (RequestNextPrime& nextPrimeMessage);
-
-        ResponseError& getResponseError ();
-        void setResponseError (ResponseError& responseError);
-
-        ResponseFileTestOperation& getResponseFileTestOperation ();
+                RequestFileTestOperation* fileTestOperationMessage);
+        RequestGetDate* getGetDateMessage ();
+        void setGetDateMessage (RequestGetDate* getDateMessage);
+        RequestNextNPrimes* getNextNPrimeMessage ();
+        void setNextNPrimeMessage (RequestNextNPrimes* nextNPrimeMessage);
+        RequestNextPrime* getNextPrimeMessage ();
+        void setNextPrimeMessage (RequestNextPrime* nextPrimeMessage);
+        ResponseError* getResponseError ();
+        void setResponseError (ResponseError* responseError);
+        ResponseFileTestOperation* getResponseFileTestOperation ();
         void setResponseFileTestOperation (
-                ResponseFileTestOperation& responseFileTestOperation);
-
-        ResponseGetDate& getResponseGetDate ();
-        void setResponseGetDate (ResponseGetDate& responseGetDate);
-
-        ResponseHeader& getResponseHeader ();
-        void setResponseHeader (ResponseHeader& responseHeader);
-
-        ResponseNextNPrime& getResponseNextNPrimes ();
-        void setResponseNextNPrimes (ResponseNextNPrime& responseNextNPrimes);
-
-        ResponseNextPrime& getResponseNextPrime ();
-        void setResponseNextPrime (ResponseNextPrime& responseNextPrime);
-
-        ResponseTestPrime& getResponseTestPrime ();
-        void setResponseTestPrime (ResponseTestPrime& responseTestPrime);
-
-        RequestTestPrime& getTestPrimeMessage ();
-        void setTestPrimeMessage (RequestTestPrime& testPrimeMessage);
-
-        RequestGetDate& getGetDateMessage ();
-        void setGetDateMessage (RequestGetDate& getDateMessage);
+                ResponseFileTestOperation* responseFileTestOperation);
+        ResponseGetDate* getResponseGetDate ();
+        void setResponseGetDate (ResponseGetDate* responseGetDate);
+        ResponseHeader* getResponseHeader ();
+        void setResponseHeader (ResponseHeader* responseHeader);
+        ResponseNextNPrime* getResponseNextNPrimes ();
+        void setResponseNextNPrimes (ResponseNextNPrime* responseNextNPrimes);
+        ResponseNextPrime* getResponseNextPrime ();
+        void setResponseNextPrime (ResponseNextPrime* responseNextPrime);
+        ResponseTestPrime* getResponseTestPrime ();
+        void setResponseTestPrime (ResponseTestPrime* responseTestPrime);
+        RequestTestPrime* getTestPrimeMessage ();
+        void setTestPrimeMessage (RequestTestPrime* testPrimeMessage);
 
     private:
-        CommandData ( CommandData&);
-        CommandData& operator= ( CommandData&);
+        CommandData (CommandData&);
+        CommandData operator= (const CommandData&);
 
-        RequestTestPrime m_testPrimeMessage;
-        RequestNextPrime m_nextPrimeMessage;
-        RequestNextNPrimes m_nextNPrimeMessage;
-        RequestGetDate m_getDateMessage;
-        RequestFileTestOperation m_fileTestOperationMessage;
+        RequestTestPrime* m_testPrimeMessage;
+        RequestNextPrime* m_nextPrimeMessage;
+        RequestNextNPrimes* m_nextNPrimeMessage;
+        RequestGetDate* m_getDateMessage;
+        RequestFileTestOperation* m_fileTestOperationMessage;
 
-        ResponseHeader m_responseHeader;
-        ResponseTestPrime m_responseTestPrime;
-        ResponseNextPrime m_responseNextPrime;
-        ResponseNextNPrime m_responseNextNPrimes;
-        ResponseGetDate m_responseGetDate;
-        ResponseFileTestOperation m_responseFileTestOperation;
-        ResponseError m_responseError;
+        ResponseHeader* m_responseHeader;
+        ResponseTestPrime* m_responseTestPrime;
+        ResponseNextPrime* m_responseNextPrime;
+        ResponseNextNPrime* m_responseNextNPrimes;
+        ResponseGetDate* m_responseGetDate;
+        ResponseFileTestOperation* m_responseFileTestOperation;
+        ResponseError* m_responseError;
 };
 
 #endif /* COMMANDDATA_H_ */

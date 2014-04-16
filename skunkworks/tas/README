@@ -29,11 +29,34 @@ List of Services
 Enter your choice:
 ========================================================================================
 Assumptions:
-
+1) Language: C++
+2) Tools: g++ 4.8 (should run on lower version too), make, linux (Ubuntu)
+3) Support multiple clients together (used select aritfact with non block io on server)
+4) Very simple client to speak to the server
+5) A simple binary messaging protocol
+6) Basic edge case and input validation
 ========================================================================================
 How to run:
-1) Run make
-2) client and server binaries are created in the same folder as the makefile for now. 
+1) To make the server
+cd tas/server
+make
 
+./server 23451 
+
+2) to make the client
+cd tas/client
+make
+
+./client 127.0.0.1 23451
+========================================================================================
+Open items:
+1) Needs some refactoring
+2) Needs some hardcore tests (only simple positive and negative tests run)
+3) IP and port needs validation
+4) Need more input validation
+========================================================================================
+Known bugs:
+1) client side: huge number or an invalid character pushes the client into a infinte loop.
+Can be killed via a SIGSTP, SIGKILL, SIGINT.
 ========================================================================================
 

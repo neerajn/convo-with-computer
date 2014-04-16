@@ -1,8 +1,7 @@
-/*
- * messagehandler.h
+/**
+ * All messages are parsed and handled here.
  *
  */
-
 #ifndef MESSAGEHANDLER_H_
 #define MESSAGEHANDLER_H_
 
@@ -16,7 +15,7 @@ class MessageHandler
         ~MessageHandler ();
 
         int process (RequestHeader& header);
-        bool processBody (char* buffer, int bodylength, char* returnBuffer);
+        void process (char* buffer, int bodylength, char* returnBuffer, uint16_t& returnBufferSize);
 
     private:
         int m_currentType;

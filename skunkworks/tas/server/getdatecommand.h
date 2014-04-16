@@ -1,3 +1,8 @@
+/**
+ * Command to handle get date
+ *
+ */
+
 #ifndef GETDATECOMMAND_H_
 #define GETDATECOMMAND_H_
 

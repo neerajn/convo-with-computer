@@ -1,0 +1,31 @@
+/**
+ * services.h
+ *
+ * All support services mentioned here.
+ *
+ */
+
+#ifndef SERVICES_H
+#define SERVICES_H
+
+enum e_ACTION_MESSAGEREQUEST_TYPE
+{
+    TESTPRIME = 1,
+    NEXTPRIME = 2,
+    NEXTNPRIMES = 3,
+    GETDATE = 4,
+    FILETESTOPERATION = 5
+};
+
+enum e_ACTION_MESSAGERESPONSE_TYPE
+{
+    RESPONSE_TESTPRIME = 1,
+    RESPONSE_NEXTPRIME = 2,
+    RESPONSE_NEXTNPRIMES = 3,
+    RESPONSE_GETDATE = 4,
+    RESPONSE_FILETESTOPERATION = 5,
+    RESPONSE_ERROR = 6
+};
+
+
+#endif

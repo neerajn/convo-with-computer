@@ -1,4 +1,16 @@
+/**
+ * Command to handle test prime number
+ *
+ */
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+
 #include "testprimecommand.h"
+
+#include "messaging.h"
+#include "services.h"
 
 TestPrimeCommand::TestPrimeCommand ()
 {
@@ -8,36 +20,21 @@ TestPrimeCommand::~TestPrimeCommand ()
 {
 }
 
-bool isPrime(int64_t n)
+bool TestPrimeCommand::execute(CommandData& data)
 {
-    if (n < 2)
+    //validation
+    // check for a limit on the value sent
+    if (data.getTestPrimeMessage ()->m_number > 100000)
     {
+        data.getResponseHeader()->m_msgType = RESPONSE_ERROR;
+        strcpy (data.getResponseError()->m_errorMsg, "Requested number beyond specified limit.");
         return false;
     }
 
-    for (int64_t i = 2; true; ++i)
-    {
-        int64_t qo = n / i;
+    std::cout << "TestPrimeCommand" << std::endl;
 
-        if (qo < i)
-        {
-            return true;
-        }
-
-        if (n % i == 0)
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-bool TestPrimeCommand::execute(CommandData& data)
-{
-    RequestTestPrime request = data.getTestPrimeMessage ();
-
-    data.getResponseTestPrime().m_isPrime = isPrime (request.m_number);
+    data.getResponseTestPrime()->m_isPrime = Helper::isPrime (data.getTestPrimeMessage ()->m_number);
+    data.getResponseHeader()->m_msgType = RESPONSE_TESTPRIME;
 
     return true;
 }

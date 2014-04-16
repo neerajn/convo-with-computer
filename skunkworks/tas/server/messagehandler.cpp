@@ -1,7 +1,11 @@
 /**
- * messagehandler.cpp
+ * All messages are parsed and handled here.
  *
-*/
+ */
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+
 #include "messagehandler.h"
 
 #include "filetestoperationcommand.h"
@@ -47,54 +51,113 @@ int MessageHandler::process (RequestHeader& header)
     return 0;
 }
 
-bool MessageHandler::processBody (char* buffer, int bodylength, char* returnBuffer)
+void MessageHandler::process (char* buffer, int bodylength, char* returnBuffer, uint16_t& returnBufferSize)
 {
     CommandData data;
-
     switch (m_currentType)
     {
         case TESTPRIME:
         {
+            std::cout << "TestPrimeCommand\n";
             TestPrimeCommand testprimecommand;
-            data.setTestPrimeMessage ((RequestTestPrime&)*buffer);
+            data.setTestPrimeMessage ((RequestTestPrime*)buffer);
+            data.setResponseHeader ((ResponseHeader*) returnBuffer);
+            data.setResponseError ((ResponseError*) (returnBuffer + sizeof (ResponseHeader)));
+            data.setResponseTestPrime ((ResponseTestPrime*) (returnBuffer + sizeof (ResponseHeader)));
 
-            return testprimecommand.execute (data);
+            std::cout << data.getTestPrimeMessage()->m_number << std::endl;
+
+            if (testprimecommand.execute (data))
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseTestPrime);
+            }
+            else
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseError);
+            }
+            break;
         }
         case NEXTPRIME:
         {
+            std::cout << "NextPrimeCommand\n";
             NextPrimeCommand nextprimecommand;
 
-            data.setNextPrimeMessage ((RequestNextPrime&)*buffer);
+            data.setNextPrimeMessage ((RequestNextPrime*)buffer);
+            data.setResponseHeader ((ResponseHeader*) returnBuffer);
+            data.setResponseError ((ResponseError*) (returnBuffer + sizeof (ResponseHeader)));
+            data.setResponseNextPrime ((ResponseNextPrime*) (returnBuffer + sizeof (ResponseHeader)));
 
-            return nextprimecommand.execute (data);
+            if (nextprimecommand.execute (data))
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseNextPrime);
+            }
+            else
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseError);
+            }
+            break;
         }
         case NEXTNPRIMES:
         {
+            std::cout << "NextNPrimeCommand\n";
             NextNPrimeCommand nextnprimecommand;
 
-            data.setNextNPrimeMessage ((RequestNextNPrimes&)*buffer);
+            data.setNextNPrimeMessage ((RequestNextNPrimes*)buffer);
+            data.setResponseHeader ((ResponseHeader*) returnBuffer);
+            data.setResponseError ((ResponseError*) (returnBuffer + sizeof (ResponseHeader)));
+            data.setResponseNextNPrimes ((ResponseNextNPrime*) (returnBuffer + sizeof (ResponseHeader)));
 
-            return nextnprimecommand.execute (data);
+            if (nextnprimecommand.execute (data))
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseNextNPrime);
+            }
+            else
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseError);
+            }
+            break;
         }
         case GETDATE:
         {
+            std::cout << "GetDateCommand\n";
             GetDateCommand getdatecommand;
 
-            data.setGetDateMessage ((RequestGetDate&)*buffer);
+            data.setGetDateMessage ((RequestGetDate*)buffer);
+            data.setResponseHeader ((ResponseHeader*) returnBuffer);
+            data.setResponseError ((ResponseError*) (returnBuffer + sizeof (ResponseHeader)));
+            data.setResponseGetDate ((ResponseGetDate*) (returnBuffer + sizeof (ResponseHeader)));
 
-            return getdatecommand.execute (data);
+            if (getdatecommand.execute (data))
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseGetDate);
+            }
+            else
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseError);
+            }
+            break;
         }
         case FILETESTOPERATION:
         {
+            std::cout << "FileTestOperationCommand\n";
             FileTestOperationCommand filetestoperationcommand;
 
-            data.setFileTestOperationMessage ((RequestFileTestOperation&)*buffer);
+            data.setFileTestOperationMessage ((RequestFileTestOperation*)buffer);
+            data.setResponseHeader ((ResponseHeader*) returnBuffer);
+            data.setResponseError ((ResponseError*) (returnBuffer + sizeof (ResponseHeader)));
+            data.setResponseFileTestOperation ((ResponseFileTestOperation*) (returnBuffer + sizeof (ResponseHeader)));
 
-            return filetestoperationcommand.execute (data);
+            if (filetestoperationcommand.execute (data))
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseFileTestOperation);
+            }
+            else
+            {
+                returnBufferSize = sizeof (ResponseHeader) + sizeof (ResponseError);
+            }
+            break;
         }
         default:
-            return false;
+            break;
     }
-
-    return true;
 }

@@ -1,4 +1,4 @@
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -lrt
+CXXFLAGS =	-O2 -g -Wall -Wstrict-aliasing -fmessage-length=0 -lrt
 
 OBJS =		commanddata.o\
     filetestoperationcommand.o\

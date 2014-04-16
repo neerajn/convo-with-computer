@@ -1,4 +1,15 @@
+/**
+ * Command to handle next  prime number
+ *
+ */
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "nextprimecommand.h"
+#include "messaging.h"
+#include "services.h"
+
 
 NextPrimeCommand::NextPrimeCommand ()
 {
@@ -8,43 +19,19 @@ NextPrimeCommand::~NextPrimeCommand ()
 {
 }
 
-bool isPrime(int64_t n)
+bool NextPrimeCommand::execute(CommandData& data)
 {
-    if (n < 2)
+    //validation
+    // check for a limit on the value sent
+    if (data.getNextPrimeMessage ()->m_number > 100000)
     {
+        data.getResponseHeader()->m_msgType = RESPONSE_ERROR;
+        strcpy (data.getResponseError()->m_errorMsg, "Requested number beyond specified limit.");
         return false;
     }
 
-    for (int64_t i = 2; true; ++i)
-    {
-        int64_t qo = n / i;
-
-        if (qo < i)
-        {
-            return true;
-        }
-
-        if (n % i == 0)
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-bool getNextPrime (int64_t n)
-{
-    for (; !isPrime (n); ++n);
-
-    return n;
-}
-
-bool NextPrimeCommand::execute(CommandData& data)
-{
-    RequestNextPrime request = data.getNextPrimeMessage ();
-
-    data.getResponseNextPrime().m_number = getNextPrime (request.m_number);
+    data.getResponseNextPrime()->m_number = Helper::getNextPrime (data.getNextPrimeMessage ()->m_number);
+    data.getResponseHeader()->m_msgType = RESPONSE_NEXTPRIME;
 
     return true;
 }

@@ -1,3 +1,7 @@
+/**
+ * Server side messaging protocol definitions
+ *
+ */
 #ifndef MESSAGING_H
 #define MESSAGING_H
 
@@ -37,8 +41,8 @@ struct RequestNextNPrimes
 
 struct RequestGetDate
 {
+    int8_t m_dummy;
 };
-
 
 struct RequestFileTestOperation
 {
@@ -64,6 +68,7 @@ struct ResponseNextPrime
 
 struct ResponseNextNPrime
 {
+    uint16_t m_size;
     int64_t m_number[MAX_PRIMES_LIST_SIZE];
 };
 
@@ -79,7 +84,6 @@ struct ResponseFileTestOperation
 
 struct ResponseError
 {
-    int8_t m_errorCode;
     char m_errorMsg [RESPONSE_ERROR_MSG_SIZE];
 };
 

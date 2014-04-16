@@ -1,3 +1,7 @@
+/**
+ * Command to handle next prime number
+ *
+ */
 #ifndef NEXTPRIMECOMMAND_H_
 #define NEXTPRIMECOMMAND_H_
 

@@ -1,3 +1,7 @@
+/**
+ * Command to handle test prime number
+ *
+ */
 #ifndef TESTPRIMECOMMAND_H_
 #define TESTPRIMECOMMAND_H_
 
