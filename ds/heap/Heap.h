@@ -1,25 +1,28 @@
 /*
  * Heap.h
  *
- *  Created on: Apr 22, 2014
- *      Author: neerajnandakumar
  */
 
 #ifndef HEAP_H_
 #define HEAP_H_
 
 #include <math.h>
+#include <string.h>
+#include <stdlib.h>
 
 namespace convo
 {
 
-    template <int SIZE = 1000>
+#define MINHEAP 0
+#define MAXHEAP 1
+
+    template <int SIZE = 1000, bool MODE = MINHEAP>
     class BinaryHeap
     {
         public:
-            BinaryHeap ()
+            BinaryHeap () : size (0)
             {
-
+                memset ((void*)data, 0, sizeof (int) * SIZE);
             }
 
             ~BinaryHeap ()
@@ -42,7 +45,61 @@ namespace convo
                 return floor ((pos - 1) / 2);
             }
 
-            void heapify ()
+            void insertItem (int value)
+            {
+                if (MODE)
+                {
+                    maxHeapify ();
+                }
+                else
+                {
+                    minHeapify ();
+                }
+                size ++;
+            }
+
+            void deleteItem ()
+            {
+                if (MODE)
+                {
+                    maxHeapify ();
+                }
+                else
+                {
+                    minHeapify ();
+                }
+
+                size --;
+            }
+
+            void print ()
+            {
+
+            }
+
+            int getSize ()
+            {
+                return size;
+            }
+
+        private:
+
+            void deleteMin ()
+            {
+
+            }
+
+            void deleteMax ()
+            {
+
+            }
+
+            void minHeapify ()
+            {
+
+            }
+
+            void maxHeapify ()
             {
 
             }
@@ -50,6 +107,8 @@ namespace convo
         private:
 
             int data[SIZE];
+            int size;
+
     };
 
 } /* namespace convo */

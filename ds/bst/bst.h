@@ -41,6 +41,43 @@ namespace convo
 
             }
 
+            void inOrderTraverse ()
+            {
+
+            }
+
+            void preOrderTraverse ()
+            {
+
+
+            }
+
+            void postOrderTraverse ()
+            {
+
+            }
+
+            void findInorderSuccessor ()
+            {
+
+            }
+
+            void findInorderPredecessor ()
+            {
+
+            }
+
+            void findPreorderSuccessor ()
+            {
+
+            }
+
+            void findPreorderPredecessor ()
+            {
+
+            }
+
+
         private:
 
 
