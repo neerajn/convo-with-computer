@@ -1,4 +1,4 @@
-CXXFLAGS =	-O2 -g -Wall -Wstrict-aliasing -fmessage-length=0 -lrt
+CXXFLAGS =	-O2 -g -Wall -Wstrict-aliasing -fmessage-length=0 
 
 OBJS =		commanddata.o\
     filetestoperationcommand.o\
@@ -14,7 +14,7 @@ LIBS =
 TARGET =	server
 
 $(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) -lrt
+	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) 
 
 all:	$(TARGET)
 
