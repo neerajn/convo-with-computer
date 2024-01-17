@@ -8,7 +8,7 @@ LIBS =
 TARGET =	client
 
 $(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) -lrt
+	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) 
 
 all:	$(TARGET)
 

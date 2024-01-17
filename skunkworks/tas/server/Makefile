@@ -1,4 +1,4 @@
-CXX = /usr/gcc-4.8.2/bin/g++-4.8.2
+CXX = /usr/bin/g++
 CXXFLAGS =	-O2 -g -Wall -Wstrict-aliasing -fmessage-length=0 
 
 OBJS =		commanddata.o\
